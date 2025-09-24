@@ -110,6 +110,7 @@ export default function Receita_da_vovó() {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
