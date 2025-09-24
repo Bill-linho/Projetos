@@ -40,6 +40,9 @@ export default function Receita_da_vovó() {
 
     setView('lista')
   }
+  const addRecipienteNovo = () => {
+    
+  }
 
   const deletaRecipiente = (id) => {
     setRecipes(currentRecipes => currentRecipes.filter(recipes => recipes.id !== id))
