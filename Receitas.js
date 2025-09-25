@@ -304,9 +304,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#95a5a6',
   },
-  modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.3)' },
-  modalBox: { backgroundColor: '#fff', padding: 20, borderRadius: 10, alignItems: 'center' },
-  modalButton: { marginHorizontal: 10, padding: 10 },
+  modalContainer: { 
+    flex: 1, justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.3)' 
+  },
+  modalBox: { 
+    backgroundColor: '#fff', 
+    padding: 20, 
+    borderRadius: 10, 
+    alignItems: 'center' 
+  },
+  modalButton: { 
+    marginHorizontal: 10, 
+    padding: 10 
+  },
 });
 
 export default Receitas;
