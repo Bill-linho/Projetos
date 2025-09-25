@@ -19,7 +19,11 @@ const App = () => (
   <NavigationContainer>
     <Stack.Navigator initialRouteName="Menu" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Menu" component={Menu} />
-      <Stack.Screen name="Receitas" component={Receitas} />
+      <Stack.Screen
+        name="Receitas"
+        component={Receitas}
+        options={{ headerShown: true, title: 'Receitas' }} // Ativa o header e o botão de voltar
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );
