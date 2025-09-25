@@ -10,6 +10,7 @@ export default function Receita_da_vovó() {
   const [titulo, setTitulo] = useState('')
   const [igredientes, setIgredientes] = useState('')
   const [modoPreparo, setModoPreparo] = useState('')
+  const [editar,setEditar] = useState(null)
 
   useEffect(() => {
     const carregarRecipientes = async () => {
@@ -25,10 +26,27 @@ export default function Receita_da_vovó() {
     carregarRecipientes();
   }, []);
 
+  const startEditing = (recipe) => {
+    setEditar(recipe),
+    setTitulo(recipe.title),
+    setIgredientes(recipe.ingredients)
+    setModoPreparo(recipe.preparation)
+    setView('form')
+  }
+
   const addRecipiente = () => {
     if (!titulo) {
       return
     }
+
+    if (editar) {
+      setRecipes((currentRecipes) =>
+        currentRecipes.map((recipe) =>
+          recipe.id === editar.id
+      ? {...recipe, title: titulo, igredientes: igredientes, preparation: modoPreparo}:recipe
+    ))
+    setEditar(null);
+    }else{
     const novoRecipiente = {
       id: Date.now().toString(),
       title: titulo,
@@ -36,7 +54,7 @@ export default function Receita_da_vovó() {
       preparation: modoPreparo,
     }
     setRecipes(currentRecipes => [...currentRecipes, novoRecipiente])
-
+  }
     setTitulo('')
     setIgredientes('')
     setModoPreparo('')
@@ -73,6 +91,10 @@ export default function Receita_da_vovó() {
                 <TextInput style={[styles.input, styles.textArea]} placeholder="Modo de Preparo" value={modoPreparo} onChangeText={setModoPreparo} multiline={true}/>
 
                 <Text style={styles.recipePreparation}>{item.preparation}</Text>
+
+                <TouchableOpacity onPress={() => startEditing(item)}>
+                  <Text style={styles.editarBTN2}>Editar Igredientes</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity style={styles.deleteButton} onPress={() => deletaRecipiente(item.id)}>
                   <Text style={styles.buttonText}>Excluir</Text>
@@ -177,6 +199,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 5,
   },
+  editarBTN2:{
+    color: 'white', 
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    margin:5
+  },
   cancelButton: {
     backgroundColor: '#95a5a6',
   },
@@ -189,6 +218,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     marginBottom: 20,
+  },
+  editButton: {
+    color: '#3498db',
+    fontSize: 16,
+    marginTop: 5,
   },
   recipeItem: {
     backgroundColor: '#fff',
