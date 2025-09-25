@@ -9,6 +9,7 @@ export default function Receita_da_vovó() {
   const [recipes, setRecipes] = useState('')
   const [titulo, setTitulo] = useState('')
   const [igredientes, setIgredientes] = useState('')
+  const [modoPreparo, setModoPreparo] = useState('')
 
   useEffect(() => {
     const carregarRecipientes = async () => {
@@ -31,17 +32,15 @@ export default function Receita_da_vovó() {
     const novoRecipiente = {
       id: Date.now().toString(),
       title: titulo,
-      ingredients: igredientes
+      ingredients: igredientes,
+      preparation: modoPreparo,
     }
     setRecipes(currentRecipes => [...currentRecipes, novoRecipiente])
 
     setTitulo('')
     setIgredientes('')
-
+    setModoPreparo('')
     setView('lista')
-  }
-  const addRecipienteNovo = () => {
-    
   }
 
   const deletaRecipiente = (id) => {
@@ -70,6 +69,10 @@ export default function Receita_da_vovó() {
                   <Text style={styles.recipeTitle}>{item.title}</Text>
                   <Text style={styles.recipeIngredients}>{item.ingredients}</Text>
                 </View>
+                
+                <TextInput style={[styles.input, styles.textArea]} placeholder="Modo de Preparo" value={modoPreparo} onChangeText={setModoPreparo} multiline={true}/>
+
+                <Text style={styles.recipePreparation}>{item.preparation}</Text>
 
                 <TouchableOpacity style={styles.deleteButton} onPress={() => deletaRecipiente(item.id)}>
                   <Text style={styles.buttonText}>Excluir</Text>
@@ -127,6 +130,12 @@ const styles = StyleSheet.create({
   },
   Scrollcontainer: {
     padding: 16,
+  },
+  recipePreparation: {
+    margin:10,
+    fontSize: 16,
+    color: '#34495e',
+    marginTop: 5,
   },
   header: {
     fontSize: 28,
