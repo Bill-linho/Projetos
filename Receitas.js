@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import react, { useState, useEffect } from 'react'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
